@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.nour.model.Country;
-import com.example.nour.model.CountryDTO;
+import com.example.nour.model.Region;
 import com.example.nour.repository.CountryRepository;
+import com.example.nour.repository.RegionRepository;
 
 @Controller
 @RequestMapping(path="/country")
@@ -21,8 +22,9 @@ public class CountryController {
 
 	@Autowired
 	private CountryRepository countryRepository;
-	private ModelMapper modelMapper;
 	
+	@Autowired
+	private RegionRepository regionRepository;
 	@GetMapping(path="/edit/{id}")
 	public String edit(Model model,@PathVariable String id) {
 		Optional<Country> opt = countryRepository.findById(id);
@@ -32,6 +34,7 @@ public class CountryController {
 //		CountryDTO countryDTO =   modelMapper.map(country, CountryDTO.class);
 		
 		model.addAttribute("countryForm", country);
+		model.addAttribute("regions", regionRepository.findAll());
 		
 		
 		return "countryEdit";
@@ -40,10 +43,13 @@ public class CountryController {
 	@PostMapping(path="/update")
 	public String update(Model model, @ModelAttribute Country count) {
 		
-		Optional<Country> opt = countryRepository.findById(count.getCountryId());
+		Region reg = regionRepository.findById(count.getRegion().getRegionId()).get();
 		
-		Country country = opt.get();
+		Country country = countryRepository.findById(count.getCountryId()).get();
+		
 		country.setCountryName(count.getCountryName());
+		
+		country.setRegion(reg);
 		
 		countryRepository.save(country);
 		
