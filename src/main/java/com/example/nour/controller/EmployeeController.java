@@ -1,11 +1,13 @@
 package com.example.nour.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,23 @@ public class EmployeeController {
 		}
 		
 		return empDTOs;
+	}
+	
+	@GetMapping(path="/plotSalaryPerEmp")
+	public String plotSalaryPerEmp(Model model) {
+		List<Employee> emps = (List<Employee>) employeeRepository.findAll();
+		ArrayList<BigDecimal> sals = new ArrayList<>();
+		ArrayList<Long> empIds = new ArrayList<>();
+		
+		for (int i = 0; i < emps.size(); i++) {
+			sals.add(emps.get(i).getSalary());
+			empIds.add(emps.get(i).getEmployeeId());
+		}
+		
+		model.addAttribute("sals", sals);
+		model.addAttribute("ids", empIds);
+		
+		return "plotSalaryPerEmp";
 	}
 	
 }
