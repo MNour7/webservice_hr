@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.nour.model.Country;
+import com.example.nour.model.Region;
 import com.example.nour.repository.CountryRepository;
+import com.example.nour.repository.RegionRepository;
 
 @Controller
 @RequestMapping(path="/country")
@@ -19,6 +21,9 @@ public class CountryController {
 
 	@Autowired
 	private CountryRepository countryRepository;
+	
+	@Autowired
+	private RegionRepository regionRepository;
 	
 	@GetMapping(path="/all")
 	public String allCountries(Model model) {
@@ -32,6 +37,7 @@ public class CountryController {
 		Optional<Country> opt = countryRepository.findById(id);
 		Country country = opt.get();	
 		model.addAttribute("countryForm", country);
+		model.addAttribute("regions", regionRepository.findAll());
 		
 		return "countryEdit";
 	}
@@ -40,10 +46,10 @@ public class CountryController {
 	public String update(Model model, @ModelAttribute Country count) {
 		
 		Optional<Country> opt = countryRepository.findById(count.getCountryId());
-		
+		Region reg = regionRepository.findById(count.getRegion().getRegionId()).get();
 		Country country = opt.get();
 		country.setCountryName(count.getCountryName());
-		
+		country.setRegion(reg);
 		countryRepository.save(country);
 		
 		return "redirect:all";

@@ -18,6 +18,12 @@
 			<label for="name">Country Name :</label>
 			<input type="text" th:field="*{countryName}" id="name"/>
 		</p>
+		<p>
+			<label for="reg">Region :</label>
+			<select th:field="*{region.regionId}" id="reg">
+				<option th:each="reg : ${regions}" th:value="${reg.regionId}" th:text="${reg.regionName}"></option>				
+			</select>
+		</p>
 		
 		<input type="submit" value="Commit"/>
 		
