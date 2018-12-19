@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<meta charset="ISO-8859-1">
+<title>Edit Country</title>
+</head>
+<body>
+	<h2>Edit the country</h2>
+	
+	<form th:action="@{/country/update}" th:object="${countryForm}" method="POST">
+		<p>
+			<span>Country ID :</span>
+			<span th:text="${countryForm.countryId}"></span>
+		</p>
+		<p>
+			<input type="text" th:field="*{countryId}" style="display:none;"/>
+			<label for="name">Country Name :</label>
+			<input type="text" th:field="*{countryName}" id="name"/>
+		</p>
+		
+		<input type="submit" value="Valider"/>
+		
+	</form>
+</body>
+</html>

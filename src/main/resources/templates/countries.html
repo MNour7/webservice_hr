@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Country List</title>
+</head>
+<body>
+	<p> La liste des Country</p>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Region Name</th>
+				<th>Modif</th>
+				
+			</tr>
+		</thead>
+		
+		<tbody th:each="country : ${countries}">
+			<tr>
+				<td th:text="${country.countryId}"></td>
+				<td th:text="${country.countryName}"></td>
+				<td th:text="${country.region.regionName}"></td>
+				<td><a th:href="@{/country/edit/{id}(id=${country.countryId})}">Modifer</a></td>  
+			</tr>
+		</tbody>
+		
+	</table>
+</body>
+</html>
