@@ -14,7 +14,6 @@ import com.example.nour.repository.CountryRepository;
 import com.example.nour.repository.LocationRepository;
 import com.example.nour.model.Country;
 import com.example.nour.model.Location;
-import com.example.nour.model.Region;
 
 @Controller
 @RequestMapping(path="/location")
