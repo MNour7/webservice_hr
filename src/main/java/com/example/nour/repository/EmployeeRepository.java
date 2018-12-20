@@ -8,4 +8,5 @@ import com.example.nour.model.Employee;
 
 public interface EmployeeRepository extends CrudRepository<Employee, String> {
 	List<Employee> findAllByFirstName(String firstName);
+	List<Employee> findAllByOrderBySalaryAsc();
 }

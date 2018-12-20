@@ -59,4 +59,54 @@ public class EmployeeController {
 		return "plotSalaryPerEmp";
 	}
 	
+	@GetMapping(path="/decileSalary")
+	public String decileSalary(Model model) {
+		List<Employee> emps = (List<Employee>) employeeRepository.findAllByOrderBySalaryAsc();
+		ArrayList<BigDecimal> sals = new ArrayList<>();
+		ArrayList<BigDecimal> deciles = new ArrayList<>();
+		
+		for (int i = 0; i < emps.size(); i++) {
+			sals.add(emps.get(i).getSalary());
+		}
+		
+		int n = sals.size();
+		int indLeft = 0;
+		int indRight = 0;
+		ArrayList<BigDecimal> interm = new ArrayList<>();
+		ArrayList<Double> reparts = new ArrayList<>();
+		for (int i = 1; i < 10; i++) {
+			indRight = Math.round((i*n)/10);
+			
+			deciles.add(sals.get(indRight));
+			//recup taille de la classe
+			double portion = sals.subList(indLeft, indRight+1).size();
+
+			//calcul portion de la class dans l'ensemble
+			reparts.add((portion/n)*100);
+			
+			indLeft = indRight+1;
+		}
+		
+		String repartString = "";
+		for (int i = 0; i < reparts.size(); i++) {
+			if(i < reparts.size()-1)
+				repartString += reparts.get(i)+"-";
+			else
+				repartString += reparts.get(i);
+		}
+		
+		String decileString = "";
+		for (int i = 0; i < deciles.size(); i++) {
+			if(i < deciles.size()-1)
+				decileString += deciles.get(i)+"-";
+			else
+				decileString += deciles.get(i);
+		}
+		
+		model.addAttribute("deciles", decileString);
+		model.addAttribute("reparts", repartString);
+		
+		return "decileSalary";
+	}
+	
 }

@@ -52,8 +52,7 @@ public class CountryController {
 		country.setRegion(reg);
 		countryRepository.save(country);
 		
-		return "redirect:all";
+		return "redirect:list";
 	}
-	
 
 }
