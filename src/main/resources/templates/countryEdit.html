@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
 <meta charset="ISO-8859-1">
-<title>Edit Country</title>
+<title>Country Edition</title>
 </head>
 <body>
 	<h2>Edit the country</h2>
@@ -18,17 +18,14 @@
 			<label for="name">Country Name :</label>
 			<input type="text" th:field="*{countryName}" id="name"/>
 		</p>
-		
 		<p>
 			<label for="reg">Region :</label>
 			<select th:field="*{region.regionId}" id="reg">
-<!-- 				<option value="1">1</option> -->
-<!-- 				<option value="">2</option> -->
 				<option th:each="reg : ${regions}" th:value="${reg.regionId}" th:text="${reg.regionName}"></option>				
 			</select>
 		</p>
 		
-		<input type="submit" value="Valider"/>
+		<input type="submit" value="Commit"/>
 		
 	</form>
 </body>

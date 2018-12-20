@@ -2,7 +2,6 @@ package com.example.nour.controller;
 
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,17 +24,20 @@ public class CountryController {
 	
 	@Autowired
 	private RegionRepository regionRepository;
+	
+	@GetMapping(path="/all")
+	public String allCountries(Model model) {
+		model.addAttribute("countries", countryRepository.findAll());
+		
+		return "countries";
+	}
+	
 	@GetMapping(path="/edit/{id}")
 	public String edit(Model model,@PathVariable String id) {
 		Optional<Country> opt = countryRepository.findById(id);
-		
-		Country country = opt.get();
-//		System.err.println("NAme : "+country.getCountryName());
-//		CountryDTO countryDTO =   modelMapper.map(country, CountryDTO.class);
-		
+		Country country = opt.get();	
 		model.addAttribute("countryForm", country);
 		model.addAttribute("regions", regionRepository.findAll());
-		
 		
 		return "countryEdit";
 	}
@@ -43,23 +45,14 @@ public class CountryController {
 	@PostMapping(path="/update")
 	public String update(Model model, @ModelAttribute Country count) {
 		
+		Optional<Country> opt = countryRepository.findById(count.getCountryId());
 		Region reg = regionRepository.findById(count.getRegion().getRegionId()).get();
-		
-		Country country = countryRepository.findById(count.getCountryId()).get();
-		
+		Country country = opt.get();
 		country.setCountryName(count.getCountryName());
-		
 		country.setRegion(reg);
-		
 		countryRepository.save(country);
 		
 		return "redirect:list";
 	}
-	
-	@GetMapping(path="/list")
-	public String allCountries(Model model) {
-		model.addAttribute("countries", countryRepository.findAll());
-		
-		return "countries";
-	}
+
 }

@@ -6,14 +6,14 @@
 <title>Country List</title>
 </head>
 <body>
-	<p> La liste des Country</p>
+	<h1> La liste des Country</h1>
 	<table class=".table-striped">
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Name</th>
-				<th>Region Name</th>
-				<th>Modif</th>
+				<th>NAME</th>
+				<th>REGION NAME</th>
+				<th>ACTION</th>
 				
 			</tr>
 		</thead>
@@ -23,7 +23,7 @@
 				<td th:text="${country.countryId}"></td>
 				<td th:text="${country.countryName}"></td>
 				<td th:text="${country.region.regionName}"></td>
-				<td><a th:href="@{/country/edit/{id}(id=${country.countryId})}">Modifer</a></td>  
+				<td><a th:href="@{/country/edit/{id}(id=${country.countryId})}">Edit</a></td>  
 			</tr>
 		</tbody>
 		

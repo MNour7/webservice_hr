@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<meta charset="ISO-8859-1">
+<title>Location Edition</title>
+</head>
+<body>
+	<h2>Edit the location</h2>
+	
+	<form th:action="@{/location/update}" th:object="${locationForm}" method="POST">
+		<p>
+			<span>Location ID :</span>
+			<span th:text="${locationForm.locationId}"></span>
+		</p>
+		<p>
+			<input type="text" th:field="*{locationId}" style="display:none;"/>
+			<label for="name">Street Address:</label>
+			<input type="text" th:field="*{streetAddress}" id="name"/>
+		</p>
+		<p>
+			<label for="name">Postal Code:</label>
+			<input type="text" th:field="*{postalCode}" id="name"/>
+		</p>
+		<p>
+			<label for="name">City:</label>
+			<input type="text" th:field="*{city}" id="name"/>
+		</p>
+		<p>
+			<label for="name">State Province:</label>
+			<input type="text" th:field="*{stateProvince}" id="name"/>
+		</p>
+		<p>
+			<label for="reg">Country :</label>
+			<select th:field="*{country.countryId}" id="count">
+				<option th:each="count : ${countries}" th:value="${count.countryId}" th:text="${count.countryName}"></option>				
+			</select>
+		</p>
+		
+		<input type="submit" value="Commit"/>
+		
+	</form>
+</body>
+</html>

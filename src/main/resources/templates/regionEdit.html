@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<meta charset="ISO-8859-1">
+<title>Region Edition</title>
+</head>
+<body>
+	<h2>Edit the Region</h2>
+	
+	<form th:action="@{/region/update}" th:object="${regionForm}" method="POST">
+		<p>
+			<span>Region ID :</span>
+			<span th:text="${regionForm.regionId}"></span>
+		</p>
+		<p>
+			<input type="text" th:field="*{regionId}" style="display:none;"/>
+			<label for="name">Region Name :</label>
+			<input type="text" th:field="*{regionName}" id="name"/>
+		</p>
+		
+		<input type="submit" value="Commit"/>
+		
+	</form>
+</body>
+</html>

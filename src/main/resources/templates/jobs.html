@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Job List</title>
+</head>
+<body>
+	<p>List of jobs :</p>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>JOB TITLE</th>
+				<th>MINIMUM SALARY</th>
+				<th>MAXIMUM SALARY</th>	
+				<th>ACTION</th>
+			</tr>
+		</thead>
+		
+		<tbody th:each="job : ${jobs}">
+			<tr>
+				<td th:text="${job.jobId}"></td>
+				<td th:text="${job.jobTitle}"></td>
+				<td th:text="${job.minSalary}"></td>
+				<td th:text="${job.maxSalary}"></td>
+				<td><a th:href="@{/job/edit/{id}(id=${job.jobId})}">Edit</a></td>  
+			</tr>
+		</tbody>
+		
+	</table>
+</body>
+</html>
