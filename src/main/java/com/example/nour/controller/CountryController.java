@@ -53,10 +53,10 @@ public class CountryController {
 		
 		countryRepository.save(country);
 		
-		return "redirect:all";
+		return "redirect:list";
 	}
 	
-	@GetMapping(path="/all")
+	@GetMapping(path="/list")
 	public String allCountries(Model model) {
 		model.addAttribute("countries", countryRepository.findAll());
 		

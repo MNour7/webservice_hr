@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+<title>Decile Salary</title>
+</head>
+<body>
+
+	
+
+	<span id="rep" th:text="${reparts}" style="display:none;"></span></br>
+	
+	<span id="dec" th:text="${deciles}" style="display:none;"></span>
+	
+	<h1 style="margin-bottom:100px;">Percentage of Employees Per Decile</h1>
+	
+	
+	<canvas id="decile" width="1200" height="300"></canvas>
+	
+ 	<script>
+
+		var rep =  document.getElementById("rep").textContent;
+		var dec =  document.getElementById("dec").textContent;
+		var tabRep = rep.split("-");
+		var tabDec = dec.split("-");
+		
+       // line chart data
+       var barData = {
+            labels : tabDec,
+            datasets : [
+             {	        
+            	 fillColor : "#48A497",
+                 strokeColor : "#48A4D1",
+	             pointStrokeColor : "#9DB86D",
+                 data : tabRep
+             }
+        	]
+        }
+       // get line chart canvas
+       var decile = document.getElementById('decile').getContext('2d');
+       // draw line chart
+       new Chart(decile).Bar(barData);
+    </script>
+</body>
+</html>
