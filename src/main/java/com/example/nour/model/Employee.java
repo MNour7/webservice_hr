@@ -3,6 +3,8 @@ package com.example.nour.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -35,6 +37,7 @@ public class Employee implements Serializable {
 	private String firstName;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="HIRE_DATE")
 	private Date hireDate;
 
@@ -56,7 +59,7 @@ public class Employee implements Serializable {
 	private Department department;
 
 	//bi-directional many-to-one association to Job
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="JOB_ID")
 	@JsonBackReference
 	private Job job;

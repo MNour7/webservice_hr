@@ -2,20 +2,28 @@ package com.example.nour.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.nour.model.Department;
 import com.example.nour.model.Employee;
 import com.example.nour.model.EmployeeDTO;
+import com.example.nour.model.Job;
+import com.example.nour.repository.DepartmentRepository;
 import com.example.nour.repository.EmployeeRepository;
+import com.example.nour.repository.JobRepository;
 
 @Controller
 @RequestMapping(path="/employee")
@@ -24,7 +32,57 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
+	@Autowired
+	private JobRepository jobRepository;
+	
+	@Autowired
+	private DepartmentRepository departmentRepository;
+	
+	//private Logger
+	
+	
 	private ModelMapper modelMapper = new ModelMapper();
+	
+	@GetMapping(path="/all")
+	public String allEmployee(Model model) {
+		model.addAttribute("employees", employeeRepository.findAll());
+		return "employees";
+	}
+	
+	@GetMapping(path="/edit/{id}")
+	public String allEmployee(Model model, @PathVariable long id) {
+		model.addAttribute("jobs", jobRepository.findAll());
+		model.addAttribute("departments", departmentRepository.findAll());
+		model.addAttribute("managers", employeeRepository.findAll());
+		model.addAttribute("employeeForm", employeeRepository.findById(id).get());
+		return "employeeEdit";
+	}
+	
+	@PostMapping(path="/update")
+	public String update(Model model, @ModelAttribute Employee empForm) {
+		Employee emp = employeeRepository.findById(empForm.getEmployeeId()).get();
+		Job job = jobRepository.findById(empForm.getJob().getJobId()).get();
+		Department dep = departmentRepository.findById(empForm.getDepartment().getDepartmentId()).get();
+		emp.setFirstName(empForm.getFirstName());
+		emp.setLastName(empForm.getLastName());
+		emp.setEmail(empForm.getEmail());
+		emp.setPhoneNumber(empForm.getPhoneNumber());
+		emp.setCommissionPct(empForm.getCommissionPct());
+		emp.setSalary(empForm.getSalary());
+		//Date date = new Date(empForm.getHireDate());
+		System.err.println("hire date = "+empForm.getHireDate());
+		emp.setHireDate(empForm.getHireDate());
+		emp.setManagerId(empForm.getManagerId());
+		emp.setJob(job);
+		emp.setDepartment(dep);
+		
+		System.err.println("hire date Emp = "+emp.getHireDate());
+		
+		employeeRepository.save(emp);
+		
+		return "redirect:all";
+	}
+	
 	
 	@GetMapping(path="/firstname/{name}")
 	public @ResponseBody List<EmployeeDTO> firstName(@PathVariable String name){
@@ -72,14 +130,15 @@ public class EmployeeController {
 		int n = sals.size();
 		int indLeft = 0;
 		int indRight = 0;
-		ArrayList<BigDecimal> interm = new ArrayList<>();
+		
 		ArrayList<Double> reparts = new ArrayList<>();
 		for (int i = 1; i < 10; i++) {
 			indRight = Math.round((i*n)/10);
-			
 			deciles.add(sals.get(indRight));
+			indRight = sals.lastIndexOf(sals.get(indRight));
 			//recup taille de la classe
-			double portion = sals.subList(indLeft, indRight+1).size();
+			List<BigDecimal> tab = sals.subList(indLeft, indRight+1);
+			double portion = tab.size();
 
 			//calcul portion de la class dans l'ensemble
 			reparts.add((portion/n)*100);
