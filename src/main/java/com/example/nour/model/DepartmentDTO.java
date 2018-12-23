@@ -3,7 +3,7 @@ package com.example.nour.model;
 public class DepartmentDTO {
 	private Long departmentId;
 	private String departmentName;
-	private String location;
+	private Location location;
 	private String managerName;
 	
 	public DepartmentDTO() {
@@ -15,10 +15,10 @@ public class DepartmentDTO {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	public String getLocation() {
+	public Location getLocation() {
 		return location;
 	}
-	public void setLocation(String location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 
