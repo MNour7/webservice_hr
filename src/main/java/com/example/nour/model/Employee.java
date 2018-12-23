@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -49,6 +51,44 @@ public class Employee implements Serializable {
 
 	@Column(name="PHONE_NUMBER")
 	private String phoneNumber;
+	
+	@Column(name="PASSWORD")
+	String password;
+	
+	@Transient
+    @Enumerated(EnumType.STRING)
+    Set<UserRole> roles = new HashSet<>();
+	
+	@Column(name="role")
+	String role;
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<UserRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<UserRole> roles) {
+		this.roles = roles;
+	}
+	
+	public void addRoles(String role) {
+		this.roles.add(UserRole.valueOf(role));
+	}
 
 	private BigDecimal salary;
 

@@ -6,27 +6,29 @@
 <title>Country List</title>
 </head>
 <body>
-	<h1>List of Countries</h1>
-	<table class=".table-striped">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>NAME</th>
-				<th>REGION NAME</th>
-				<th>ACTION</th>
-				
-			</tr>
-		</thead>
-		
-		<tbody th:each="country : ${countries}">
-			<tr>
-				<td th:text="${country.countryId}"></td>
-				<td th:text="${country.countryName}"></td>
-				<td th:text="${country.region.regionName}"></td>
-				<td><a th:href="@{/country/edit/{id}(id=${country.countryId})}">Edit</a></td>  
-			</tr>
-		</tbody>
-		
-	</table>
+	<div class="container">
+		<h1>List of Countries</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>NAME</th>
+					<th>REGION NAME</th>
+					<th>ACTION</th>
+					
+				</tr>
+			</thead>
+			
+			<tbody th:each="country : ${countries}">
+				<tr>
+					<td th:text="${country.countryId}"></td>
+					<td th:text="${country.countryName}"></td>
+					<td th:text="${country.region.regionName}"></td>
+					<td><a th:href="@{/country/edit/{id}(id=${country.countryId})}">Edit</a></td>  
+				</tr>
+			</tbody>
+			
+		</table>
+	</div>
 </body>
 </html>
