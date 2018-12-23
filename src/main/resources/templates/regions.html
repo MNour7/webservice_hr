@@ -2,29 +2,33 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Region List</title>
 </head>
 <body>
-	<p>List of Regions</p>
-	<table border="1">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>REGION NAME</th>
-				<th>ACTION</th>
-				
-			</tr>
-		</thead>
-		
-		<tbody th:each="region : ${regions}">
-			<tr>
-				<td th:text="${region.regionId}"></td>
-				<td th:text="${region.regionName}"></td>
-				<td><a th:href="@{/region/edit/{id}(id=${region.regionId})}">Edit</a></td>  
-			</tr>
-		</tbody>
-		
-	</table>
+	<div class="container">
+		<h2>List of Regions</h2>
+		<table class="table table-striped" border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>REGION NAME</th>
+					<th>ACTION</th>
+
+				</tr>
+			</thead>
+
+			<tbody th:each="region : ${regions}">
+				<tr>
+					<td th:text="${region.regionId}"></td>
+					<td th:text="${region.regionName}"></td>
+					<td><a th:href="@{/region/edit/{id}(id=${region.regionId})}">Edit</a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
 </body>
 </html>
