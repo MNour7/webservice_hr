@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Employees List</title>
+</head>
+<body>
+	<div class="container">
+		<h1>List of Employees</h1>
+		<table class="table table-striped" border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>FIRST NAME</th>
+					<th>LAST NAME</th>
+					<th>EMAIL</th>
+					<th>PHONE NUMBER</th>
+					<th>HIRE DATE</th>
+					<th>JOB</th>
+					<th>SALARY</th>
+					<th>COMMISSION PCT</th>
+					<th>MANAGER</th>				
+					<th>DEPARTMENT</th>
+					<th>ACTION</th>				
+				</tr>
+			</thead>
+			
+			<tbody th:each="emp : ${employees}">
+				<tr>
+					<td th:text="${emp.employeeId}"></td>
+					<td th:text="${emp.firstName}"></td>
+					<td th:text="${emp.lastName}"></td>
+					<td th:text="${emp.email}"></td>
+					<td th:text="${emp.phoneNumber}"></td>
+					<td th:text="${emp.hireDate}"></td>
+					<td th:text="${emp.job.jobTitle}"></td>
+					<td th:text="${emp.salary}"></td>
+					<td th:text="${emp.commissionPct}"></td>
+					<td th:text="${emp.managerId}"></td>
+					<td th:text="${emp.department.departmentName}"></td>
+					<td><a th:href="@{/employee/edit/{id}(id=${emp.employeeId})}">Edit</a></td>  
+				</tr>
+			</tbody>
+			
+		</table>
+	</div>
+</body>
+</html>
