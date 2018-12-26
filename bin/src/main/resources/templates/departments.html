@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Department List</title>
+</head>
+<body>
+	<p>List of departments :</p>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>DEPARTMENT NAME</th>
+				<th>MANAGER</th>
+				<th>LOCATION</th>	
+			</tr>
+		</thead>
+		
+		<tbody th:each="department : ${departments}">
+			<tr>
+				<td th:text="${department.departmentId}"></td>
+				<td th:text="${department.departmentName}"></td>
+				<td th:text="${department.managerId}"></td>
+				<td th:text="${department.location.streetAddress + ', ' + department.location.city + ', ' + department.location.country.countryName }"></td>
+			</tr>
+		</tbody>
+		
+	</table>
+</body>
+</html>

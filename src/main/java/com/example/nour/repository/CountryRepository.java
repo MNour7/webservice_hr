@@ -7,5 +7,4 @@ import com.example.nour.model.Country;
 
 @RepositoryRestResource(collectionResourceRel = "country", path = "country")
 public interface CountryRepository extends CrudRepository<Country, String> {
-
 }

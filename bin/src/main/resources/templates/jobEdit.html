@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<meta charset="ISO-8859-1">
+<title>Job Edition</title>
+</head>
+<body>
+	<h2>Edit the job</h2>
+	
+	<form th:action="@{/job/update}" th:object="${jobForm}" method="POST">
+		<p>
+			<span>Job ID :</span>
+			<span th:text="${jobForm.jobId}"></span>
+		</p>
+		<p>
+			<input type="text" th:field="*{jobId}" style="display:none;"/>
+			<label for="name">Job Title :</label>
+			<input type="text" th:field="*{jobTitle}" id="jTitle"/>
+		<p>
+			<label for="name">Minimum Salary :</label>
+			<input type="text" th:field="*{minSalary}" id="jMin"/>
+		</p>
+		<p>
+			<label for="name">Maximum Salary :</label>
+			<input type="text" th:field="*{maxSalary}" id="jMax"/>
+		</p>
+		<input type="submit" value="Commit"/>
+		
+	</form>
+</body>
+</html>

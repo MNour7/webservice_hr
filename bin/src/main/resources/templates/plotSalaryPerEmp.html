@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+<title>Plot Salary Per Emp</title>
+</head>
+<body>
+
+	<div th:each="sal : ${sals}" style="display:none;">
+		<span class="sals" th:text="${sal}"></span>
+	</div>
+	
+	<div th:each="id : ${ids}" style="display:none;">
+		<span class="ids" th:text="${id}"></span>
+	</div>
+	
+	<canvas id="plot" width="1400" height="600"></canvas>
+	
+ 	<script>
+
+		var ids =  document.getElementsByClassName("ids");
+		var sals =  document.getElementsByClassName("sals");
+		var tabSals = [];
+		var tabIds = [];
+		var i;
+		for(i =  0; i < sals.length; i++){
+			tabSals.push(sals[i].textContent);
+		}
+		
+		for(i =  0; i < ids.length; i++){
+			tabIds.push(ids[i].textContent);
+		}
+		
+		
+       // line chart data
+       var plotData = {
+            labels : tabIds,
+            datasets : [
+             {	        
+            	 fillColor : "rgba(172,194,132,0.4)",
+	             strokeColor : "#ACC26D",
+	             pointColor : "#fff",
+	             pointStrokeColor : "#9DB86D",
+                 data : tabSals
+             }
+        	]
+        }
+       // get line chart canvas
+       var plot = document.getElementById('plot').getContext('2d');
+       // draw line chart
+       new Chart(plot).Line(plotData);
+    </script>
+</body>
+</html>
