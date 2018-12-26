@@ -8,68 +8,79 @@
 <body>
 	<div class="container">
 		<h2>Edit the Employee</h2>
-		
-		<form th:action="@{/employee/update}" th:object="${employeeForm}" method="POST">
+
+		<form th:action="@{/employee/update}" th:object="${employeeForm}"
+			method="POST">
 			<p>
-				<span>Employee ID :</span>
-				<span th:text="${employeeForm.employeeId}"></span>
+				<span>Employee ID :</span> <span
+					th:text="${employeeForm.employeeId}"></span>
 			</p>
 			<div class="form-group">
-				<input type="text" th:field="*{employeeId}" style="display:none;"/>
-				<label for="name">First Name :</label>
-				<input type="text" th:field="*{firstName}" class="form-control" id="name"/>
+				<input type="text" th:field="*{employeeId}" style="display: none;" />
+				<label for="name">First Name :</label> <input type="text"
+					th:field="*{firstName}" class="form-control" id="name" />
 			</div>
 			<div class="form-group">
-				<label for="lname">Last Name :</label>
-				<input type="text" th:field="*{lastName}" class="form-control" id="lname"/>
+				<label for="lname">Last Name :</label> <input type="text"
+					th:field="*{lastName}" class="form-control" id="lname" />
 			</div>
 			<div class="form-group">
-				<label for="email">Email :</label>
-				<input type="text" th:field="*{email}" class="form-control" id="email"/>
-			</div>
-			<div class="form-group">
-				<label for="phoneNumber">Phone Number :</label>
-				<input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber"/>
+				<label for="email">Email :</label> <input type="text"
+					th:field="*{email}" class="form-control" id="email" />
 			</div>
 			
 			<div class="form-group">
-				<label for="hireDate">Hire Date :</label>
-				<input type="date" th:field="*{hireDate}" class="form-control" id="hireDate"/>
+				<label for="password">Password :</label> <input type="text"
+					th:field="*{password}" class="form-control" id="password" />
 			</div>
 			
 			<div class="form-group">
-				<label for="job">Job :</label>
-				<select th:field="*{job.jobId}" class="form-control" id="job">
-					<option th:each="job : ${jobs}" th:value="${job.jobId}" th:text="${job.jobTitle}"></option>				
+				<label for="phoneNumber">Phone Number :</label> <input type="text"
+					th:field="*{phoneNumber}" class="form-control" id="phoneNumber" />
+			</div>
+
+			<div class="form-group">
+				<label for="hireDate">Hire Date :</label> <input type="date"
+					th:field="*{hireDate}" class="form-control" id="hireDate" />
+			</div>
+
+			<div class="form-group">
+				<label for="job">Job :</label> <select th:field="*{job.jobId}"
+					class="form-control" id="job">
+					<option th:each="job : ${jobs}" th:value="${job.jobId}"
+						th:text="${job.jobTitle}"></option>
 				</select>
 			</div>
-			
+
 			<div class="form-group">
-				<label for="salary">Salary :</label>
-				<input type="text" th:field="*{salary}" class="form-control" id="salary"/>
+				<label for="salary">Salary :</label> <input type="text"
+					th:field="*{salary}" class="form-control" id="salary" />
 			</div>
-			
+
 			<div class="form-group">
-				<label for="commissionPct">Commission PCT :</label>
-				<input type="text" th:field="*{commissionPct}" class="form-control" id="commissionPct"/>
+				<label for="commissionPct">Commission PCT :</label> <input
+					type="text" th:field="*{commissionPct}" class="form-control"
+					id="commissionPct" />
 			</div>
-			
+
 			<div class="form-group">
-				<label for="managerId">Manager :</label>
-				<select th:field="*{managerId}" class="form-control" id="managerId">
-					<option th:each="man : ${managers}" th:value="${man.employeeId}" th:text="${man.firstName+' '+man.lastName}"></option>				
+				<label for="managerId">Manager :</label> <select
+					th:field="*{managerId}" class="form-control" id="managerId">
+					<option th:each="man : ${managers}" th:value="${man.employeeId}"
+						th:text="${man.firstName+' '+man.lastName}"></option>
 				</select>
 			</div>
-				
+
 			<div class="form-group">
-				<label for="dep">Department :</label>
-				<select th:field="*{department.departmentId}" class="form-control" id="dep">
-					<option th:each="dep : ${departments}" th:value="${dep.departmentId}" th:text="${dep.departmentName}"></option>				
+				<label for="dep">Department :</label> <select
+					th:field="*{department.departmentId}" class="form-control" id="dep">
+					<option th:each="dep : ${departments}"
+						th:value="${dep.departmentId}" th:text="${dep.departmentName}"></option>
 				</select>
 			</div>
-			
-			<input type="submit" class="btn btn-default" value="Commit"/>
-			
+
+			<input type="submit" class="btn btn-default" value="Commit" />
+
 		</form>
 	</div>
 </body>

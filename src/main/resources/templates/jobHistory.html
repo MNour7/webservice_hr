@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<title>Job History</title>
+</head>
+<body>
+	<div class="container">
+
+		<h1>List of Job Histories</h1>
+		<table class="table table-striped" border="1">
+			<thead>
+				<tr>
+					<th>DEPARTMENT</th>
+					<th>JOB</th>
+					<th>EMPLOYEE</th>
+					<th>START DATE</th>
+					<th>END DATE</th>
+					<th>ACTION</th>
+				</tr>
+			</thead>
+
+			<tbody th:each="jh : ${jobHistory}">
+				<tr>
+					<td th:text="${jh.department.departmentName }"></td>
+					<td th:text="${jh.job.jobTitle }"></td>
+					<td th:text="${jh.employee.firstName + ' ' + jh.employee.lastName}"></td>
+					<td th:text="${jh.id.startDate}"></td>
+					<td th:text="${jh.endDate}"></td>
+
+					<td><a
+						th:href="@{/jobHistory/edit/{idEmployeeId}/{idStartDate}(idEmployeeId=${jh.id.employeeId},idStartDate=${jh.id.startDate})}">Edit</a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+</body>
+</html>

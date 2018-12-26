@@ -20,12 +20,12 @@
 					<th>JOB</th>
 					<th>SALARY</th>
 					<th>COMMISSION PCT</th>
-					<th>MANAGER</th>				
+					<th>MANAGER</th>
 					<th>DEPARTMENT</th>
-					<th>ACTION</th>				
+					<th>ACTION</th>
 				</tr>
 			</thead>
-			
+
 			<tbody th:each="emp : ${employees}">
 				<tr>
 					<td th:text="${emp.employeeId}"></td>
@@ -39,10 +39,10 @@
 					<td th:text="${emp.commissionPct}"></td>
 					<td th:text="${emp.managerId}"></td>
 					<td th:text="${emp.department.departmentName}"></td>
-					<td><a th:href="@{/employee/edit/{id}(id=${emp.employeeId})}">Edit</a></td>  
+					<td><a th:href="@{/employee/edit/{id}(id=${emp.employeeId})}">Edit</a></td>
 				</tr>
 			</tbody>
-			
+
 		</table>
 	</div>
 </body>

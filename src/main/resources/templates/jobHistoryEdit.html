@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="../../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<meta charset="ISO-8859-1">
+<title>Job History Edition</title>
+</head>
+<body>
+	<div class="container">
+
+		<h2>Edit the Job History</h2>
+
+		<form th:action="@{/jobHistory/update}" th:object="${jobHistoryForm}"
+			method="POST">
+			<p>
+				<span>Job History of :</span> <span
+					th:text="${jobHistoryForm.id.employee.firstName + ' ' + jobHistoryForm.id.employee.lastName}"></span>
+			</p>
+
+
+			<input type="submit" class="btn btn-default" value="Commit" />
+
+		</form>
+	</div>
+</body>
+</html>

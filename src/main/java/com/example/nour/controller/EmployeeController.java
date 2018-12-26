@@ -21,6 +21,7 @@ import com.example.nour.model.Department;
 import com.example.nour.model.Employee;
 import com.example.nour.model.EmployeeDTO;
 import com.example.nour.model.Job;
+import com.example.nour.model.UserService;
 import com.example.nour.repository.DepartmentRepository;
 import com.example.nour.repository.EmployeeRepository;
 import com.example.nour.repository.JobRepository;
@@ -37,6 +38,9 @@ public class EmployeeController {
 	
 	@Autowired
 	private DepartmentRepository departmentRepository;
+	
+	@Autowired
+	private UserService userService;
 	
 	//private Logger
 	
@@ -63,6 +67,29 @@ public class EmployeeController {
 		Employee emp = employeeRepository.findById(empForm.getEmployeeId()).get();
 		Job job = jobRepository.findById(empForm.getJob().getJobId()).get();
 		Department dep = departmentRepository.findById(empForm.getDepartment().getDepartmentId()).get();
+		
+		int depId = (int) dep.getDepartmentId();
+		switch (depId) {
+			case 10:
+				emp.setRole("ROLE_CEO");
+				break;
+				
+			case 100:
+				emp.setRole("ROLE_FIN_AC");
+				break;
+				
+			case 110:
+				emp.setRole("ROLE_FIN_AC");
+				break;
+				
+			case 80:
+				emp.setRole("ROLE_SALES");
+				break;
+	
+			default:
+				break;
+		}
+		
 		emp.setFirstName(empForm.getFirstName());
 		emp.setLastName(empForm.getLastName());
 		emp.setEmail(empForm.getEmail());
@@ -78,7 +105,13 @@ public class EmployeeController {
 		
 		System.err.println("hire date Emp = "+emp.getHireDate());
 		
-		employeeRepository.save(emp);
+		if(empForm.getPassword() != "" && empForm.getPassword() != emp.getPassword()) {
+			System.err.println("the new pwd = "+empForm.getPassword());
+			emp.setPassword(empForm.getPassword());
+			userService.saveEmpAut(emp);
+		}			
+		else
+			employeeRepository.save(emp);
 		
 		return "redirect:all";
 	}

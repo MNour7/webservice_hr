@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="../../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<meta charset="ISO-8859-1">
+<title>Department Edition</title>
+</head>
+<body>
+	<div class="container">
+
+		<h2>Edit the Department</h2>
+
+		<form th:action="@{/department/update}" th:object="${departmentForm}"
+			method="POST">
+			<p>
+				<span>Department ID :</span> <span
+					th:text="${departmentForm.departmentId}"></span>
+			</p>
+			<div class="form-group">
+				<input type="text" th:field="*{departmentId}" style="display: none;" />
+				<label for="name">Department Name :</label> <input type="text"
+					th:field="*{departmentName}" class="form-control" id="name" />
+			</div>
+			<div class="form-group">
+				<label for="loc">Location :</label> <select
+					th:field="*{location.locationId}" class="form-control" id="loc">
+					<option th:each="loc : ${locations}" th:value="${loc.locationId}"
+						th:text="${loc.city}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="emp">Manager :</label> <select th:field="*{managerId}"
+					class="form-control" id="emp">
+					<option th:each="emp : ${employees}" th:value="${emp.employeeId}"
+						th:text="${emp.firstName + ' ' + emp.lastName + ' : ' + emp.employeeId}"></option>
+				</select>
+			</div>
+
+
+
+			<input type="submit" class="btn btn-default" value="Commit" />
+
+		</form>
+	</div>
+</body>
+</html>

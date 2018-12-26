@@ -2,36 +2,41 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Location List</title>
 </head>
 <body>
-	<p>List of locations :</p>
-	<table border="1">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>STREET ADDRESS</th>
-				<th>POSTAL CODE</th>
-				<th>CITY</th>	
-				<th>STATE PROVINCE</th>
-				<th>COUNTRY</th>	
-				<th>ACTION</th>	
-			</tr>
-		</thead>
-		
-		<tbody th:each="location : ${locations}">
-			<tr>
-				<td th:text="${location.locationId}"></td>
-				<td th:text="${location.streetAddress}"></td>
-				<td th:text="${location.postalCode}"></td>
-				<td th:text="${location.city}"></td>
-				<td th:text="${location.stateProvince}"></td>
-				<td th:text="${location.country.countryName}"></td>
-				<td><a th:href="@{/location/edit/{id}(id=${location.locationId})}">Edit</a></td>  
-			</tr>
-		</tbody>
-		
-	</table>
+	<div class="container">
+
+		<h2>List of locations</h2>
+		<table class="table table-striped" border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>STREET ADDRESS</th>
+					<th>POSTAL CODE</th>
+					<th>CITY</th>
+					<th>STATE PROVINCE</th>
+					<th>COUNTRY</th>
+					<th>ACTION</th>
+				</tr>
+			</thead>
+
+			<tbody th:each="location : ${locations}">
+				<tr>
+					<td th:text="${location.locationId}"></td>
+					<td th:text="${location.streetAddress}"></td>
+					<td th:text="${location.postalCode}"></td>
+					<td th:text="${location.city}"></td>
+					<td th:text="${location.stateProvince}"></td>
+					<td th:text="${location.country.countryName}"></td>
+					<td><a
+						th:href="@{/location/edit/{id}(id=${location.locationId})}">Edit</a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
 </body>
 </html>

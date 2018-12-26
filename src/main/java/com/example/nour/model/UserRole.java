@@ -3,10 +3,9 @@ package com.example.nour.model;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum UserRole implements GrantedAuthority {
-	CEO,
-	ACCOUNTING,
-	FINANCE,
-	MANAG;
+	ROLE_CEO,
+	ROLE_FIN_AC,
+	ROLE_SALES;
 
 	@Override
 	public String getAuthority() {

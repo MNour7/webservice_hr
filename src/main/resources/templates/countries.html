@@ -2,33 +2,59 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+
 <title>Country List</title>
 </head>
 <body>
 	<div class="container">
+<<<<<<< HEAD
 		<h1>List of Countries</h1>
 		<table class="table table-striped">
+=======
+
+		<h1>List of Countries</h1>
+		<table class="table table-striped" border="1">
+>>>>>>> 817cc6ddd004288534067f9a26dcbe5daf6fa81a
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>NAME</th>
 					<th>REGION NAME</th>
 					<th>ACTION</th>
+<<<<<<< HEAD
 					
 				</tr>
 			</thead>
 			
+=======
+
+				</tr>
+			</thead>
+
+>>>>>>> 817cc6ddd004288534067f9a26dcbe5daf6fa81a
 			<tbody th:each="country : ${countries}">
 				<tr>
 					<td th:text="${country.countryId}"></td>
 					<td th:text="${country.countryName}"></td>
 					<td th:text="${country.region.regionName}"></td>
+<<<<<<< HEAD
 					<td><a th:href="@{/country/edit/{id}(id=${country.countryId})}">Edit</a></td>  
 				</tr>
 			</tbody>
 			
 		</table>
 	</div>
+=======
+					<td><a
+						th:href="@{/country/edit/{id}(id=${country.countryId})}">Edit</a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+>>>>>>> 817cc6ddd004288534067f9a26dcbe5daf6fa81a
 </body>
 </html>
