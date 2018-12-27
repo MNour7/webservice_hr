@@ -1,6 +1,8 @@
 package com.example.nour.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -12,10 +14,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.example.nour.repository.DepartmentRepository;
 import com.example.nour.repository.EmployeeRepository;
 import com.example.nour.repository.LocationRepository;
 import com.example.nour.model.Department;
+import com.example.nour.model.DepartmentDTO;
+import com.example.nour.model.Employee;
+
 
 @Controller
 @RequestMapping(path="/department")
@@ -32,41 +38,41 @@ public class DepartmentController {
 	private ModelMapper modelMapper = new ModelMapper();
 
 	
-//	public List<DepartmentDTO> getAllDepDTOs(){
-//		
-//		List<DepartmentDTO> depDTOs = new ArrayList<>();
-//		List<Department> deps = (List<Department>) departmentRepository.findAll();
-//		
-//		for(int i = 0; i < deps.size(); i++) {
-//			DepartmentDTO depDTO = modelMapper.map(deps.get(i), DepartmentDTO.class);
-//			depDTO.setDepartmentId(deps.get(i).getDepartmentId());
-//			depDTO.setDepartmentName(deps.get(i).getDepartmentName());
-//			depDTO.setLocation(deps.get(i).getLocation());
-//			try {
-//			Employee emp = employeeRepository.findById(deps.get(i).getManagerId().longValue()).get();
-//			depDTO.setManagerName(
-//					emp.getFirstName() + " " + emp.getLastName()
-//					);
-//			}catch(Exception e){
-//				depDTO.setManagerName(
-//						"Unknown Manager"
-//						);
-//			}
-//			
-//			depDTOs.add(depDTO);
-//			
-//		}
-//		
-//		return depDTOs;
-//	}
-//	
-//	@GetMapping(path="/all")
-//	public String allDepartmentsDTO(Model model) {
-//		model.addAttribute("departments", this.getAllDepDTOs());
-//		
-//		return "departments";
-//		
-//	}
+	public List<DepartmentDTO> getAllDepDTOs(){
+		
+		List<DepartmentDTO> depDTOs = new ArrayList<>();
+		List<Department> deps = (List<Department>) departmentRepository.findAll();
+		
+		for(int i = 0; i < deps.size(); i++) {
+			DepartmentDTO depDTO = modelMapper.map(deps.get(i), DepartmentDTO.class);
+			depDTO.setDepartmentId(deps.get(i).getDepartmentId());
+			depDTO.setDepartmentName(deps.get(i).getDepartmentName());
+			depDTO.setLocation(deps.get(i).getLocation());
+			try {
+			Employee emp = employeeRepository.findById(deps.get(i).getManagerId().longValue()).get();
+			depDTO.setManagerName(
+					emp.getFirstName() + " " + emp.getLastName()
+					);
+			}catch(Exception e){
+				depDTO.setManagerName(
+						"Unknown Manager"
+						);
+			}
+			
+			depDTOs.add(depDTO);
+			
+		}
+		
+		return depDTOs;
+	}
+	
+	@GetMapping(path="/all")
+	public String allDepartmentsDTO(Model model) {
+		model.addAttribute("departments", this.getAllDepDTOs());
+		
+		return "departments";
+		
+	}
 	
 	
 	@GetMapping(path="/edit/{id}")
