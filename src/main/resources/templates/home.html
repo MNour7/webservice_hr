@@ -1,42 +1,65 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
 <meta charset="ISO-8859-1">
 <title>Home Page</title>
 </head>
 <body>
-
+	<div th:replace="fragment/header :: header"></div>
 	<div class="container">
-		<span th:text="${#request.userPrincipal.principal}"></span>
-		<h1 class="text-center" style="margin:50px 0;">All Pages of the WebApp</h1>
-		<div class="row" style="margin:15px 0;">
-		  <div class="col-md-4">
-		  	<a th:href="@{/region/all}"><button type="button" class="btn btn-info btn-block">Regions</button></a>
-		  </div>
-		  <div class="col-md-4">
-		  	<a th:href="@{/country/all}"><button type="button" class="btn btn-success btn-block">Countries</button></a>
-		  </div>
-		  <div class="col-md-4">
-		  	<a th:href="@{/location/all}"><button type="button" class="btn btn-warning btn-block">Locations</button></a>
-		  </div>
+		<!-- <span th:text="${#request.userPrincipal.principal}"></span> -->
+		<h1 class="text-center" style="margin: 50px 0;">All Pages of the
+			WebApp</h1>
+		<div class="row" style="margin: 15px 0;">
+			<div class="col-md-4">
+				<a th:href="@{/region/all}"><button type="button"
+						class="btn btn-info btn-block">Regions</button></a>
+			</div>
+			<div class="col-md-4">
+				<a th:href="@{/country/all}"><button type="button"
+						class="btn btn-success btn-block">Countries</button></a>
+			</div>
+			<div class="col-md-4">
+				<a th:href="@{/location/all}"><button type="button"
+						class="btn btn-info btn-block">Locations</button></a>
+			</div>
 		</div>
-		
-		<div class="row" style="margin:15px 0;">
-		  <div class="col-md-4">
-		  	<a th:href="@{/department/all}"><button type="button" class="btn btn-danger btn-block">Departments</button></a>
-		  </div>
-		  <div class="col-md-4">
-		  	<a th:href="@{/employee/all}"><button type="button" class="btn btn-info btn-block">Employees</button></a>
-		  </div>
-		  <div class="col-md-4">
-		  	<a th:href="@{/job/all}"><button type="button" class="btn btn-success btn-block">Jobs</button></a>
-		  </div>
+
+		<div class="row" style="margin: 15px 0;">
+			<div class="col-md-4">
+				<a th:href="@{/department/all}"><button type="button"
+						class="btn btn-success btn-block">Departments</button></a>
+			</div>
+			<div class="col-md-4">
+				<a th:href="@{/employee/all}"><button type="button"
+						class="btn btn-info btn-block">Employees</button></a>
+			</div>
+			<div class="col-md-4">
+				<a th:href="@{/job/all}"><button type="button"
+						class="btn btn-success btn-block">Jobs</button></a>
+			</div>
 		</div>
-		  <div class="row" style="margin:15px 0;">
-		  	<a th:href="@{/jobHistory/all}"><button type="button" class="btn btn-primary btn-block">Jobs History</button></a>
-		  </div>
+				<hr>
+		<div class="row" style="margin: 15px 0;">
+			<a th:href="@{/jobHistory/all}"><button type="button"
+					class="btn btn-primary btn-block">Jobs History</button></a>
+		</div>
+		<hr>
+		<div class="row" style="margin: 15px 0;">
+			<div class="col-md-4">
+				<a th:href="@{/employee/decileSalary}"><button type="button"
+						class="btn btn-secondary btn-block">Salary by Decile</button></a>
+			</div>
+			<div class="col-md-4">
+				<a th:href="@{/employee/plotSalaryPerEmp}"><button type="button"
+						class="btn btn-secondary btn-block">Salary per Employee</button></a>
+			</div>
+		</div>
+
 	</div>
 </body>
 </html>

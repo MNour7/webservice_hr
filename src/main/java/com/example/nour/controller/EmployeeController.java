@@ -2,11 +2,9 @@ package com.example.nour.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -152,7 +150,7 @@ public class EmployeeController {
 	
 	@GetMapping(path="/decileSalary")
 	public String decileSalary(Model model) {
-		List<Employee> emps = (List<Employee>) employeeRepository.findAllByOrderBySalaryAsc();
+		List<Employee> emps = employeeRepository.findAllByOrderBySalaryAsc();
 		ArrayList<BigDecimal> sals = new ArrayList<>();
 		ArrayList<BigDecimal> deciles = new ArrayList<>();
 		

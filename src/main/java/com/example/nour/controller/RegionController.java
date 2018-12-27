@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.nour.model.Job;
 import com.example.nour.model.Region;
 import com.example.nour.repository.RegionRepository;
 

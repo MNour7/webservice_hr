@@ -9,7 +9,6 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 
-import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;

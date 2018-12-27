@@ -1,8 +1,6 @@
 package com.example.nour.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -14,18 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.example.nour.repository.DepartmentRepository;
 import com.example.nour.repository.EmployeeRepository;
 import com.example.nour.repository.LocationRepository;
-import com.example.nour.model.Country;
 import com.example.nour.model.Department;
-//import com.example.nour.model.DepartmentDTO;
-import com.example.nour.model.Employee;
-import com.example.nour.model.EmployeeDTO;
-import com.example.nour.model.Location;
-import com.example.nour.model.Region;
 
 @Controller
 @RequestMapping(path="/department")

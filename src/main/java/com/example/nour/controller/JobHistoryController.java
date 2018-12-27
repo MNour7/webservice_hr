@@ -33,7 +33,7 @@ public class JobHistoryController {
 			throws ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
-		Date date = (Date) dateFormat.parse(idStartDate);
+		Date date = dateFormat.parse(idStartDate);
 		java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
 		System.err.println(idEmployeeId);
 		System.err.println(sqlStartDate);
