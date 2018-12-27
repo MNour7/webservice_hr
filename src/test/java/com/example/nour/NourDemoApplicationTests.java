@@ -13,7 +13,7 @@ import com.example.nour.model.Job;
 import com.example.nour.repository.JobRepository;
 
 //the test run before this error unknown..of import repo & springRunner class.. any clue
-@RunWith(SprigRunner.class)
+@RunWith(SpringRunner.class)
 
 @SpringBootTest
 public class NourDemoApplicationTests {
@@ -22,9 +22,6 @@ public class NourDemoApplicationTests {
 	@Autowired
 	JobRepository jobRepository;
 	Job job;
-	
-	
-	
 	
 	@Test
 	public void contextLoads() {
@@ -38,7 +35,5 @@ public class NourDemoApplicationTests {
 		//assertThat("kahinaUpdate").isEqualTo(jobRepository.findById("AC_ACCOUNT").getJobTitle());
 	}
 	
-	
-
 }
 
