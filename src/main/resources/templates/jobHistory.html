@@ -32,10 +32,10 @@
 					<td th:text="${jh.id.startDate}"></td>
 					<td th:text="${jh.endDate}"></td>
 
-					<!-- <td><a
-						th:href="@{/jobHistory/edit/{idEmployeeId}/{idStartDate}(idEmployeeId=${jh.id.employeeId},idStartDate=${jh.id.startDate})}">Edit</a></td>
-				 -->
-				 <td>Edit</td>
+					<td>
+						<a th:href="@{/jobHistory/edit/{idEmployeeId}/{idStartDate}
+						(idEmployeeId=${jh.id.employeeId},idStartDate=${jh.id.startDate})}">Edit</a>
+					</td>				
 				 </tr>
 				 
 			</tbody>

@@ -94,17 +94,12 @@ public class EmployeeController {
 		emp.setPhoneNumber(empForm.getPhoneNumber());
 		emp.setCommissionPct(empForm.getCommissionPct());
 		emp.setSalary(empForm.getSalary());
-		//Date date = new Date(empForm.getHireDate());
-		System.err.println("hire date = "+empForm.getHireDate());
 		emp.setHireDate(empForm.getHireDate());
 		emp.setManagerId(empForm.getManagerId());
 		emp.setJob(job);
 		emp.setDepartment(dep);
 		
-		System.err.println("hire date Emp = "+emp.getHireDate());
-		
 		if(empForm.getPassword() != "" && empForm.getPassword() != emp.getPassword()) {
-			System.err.println("the new pwd = "+empForm.getPassword());
 			emp.setPassword(empForm.getPassword());
 			userService.saveEmpAut(emp);
 		}			
