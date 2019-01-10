@@ -68,7 +68,7 @@ public class EmployeeController {
 		
 		int depId = (int) dep.getDepartmentId();
 		switch (depId) {
-			case 10:
+			case 90:
 				emp.setRole("ROLE_CEO");
 				break;
 				
